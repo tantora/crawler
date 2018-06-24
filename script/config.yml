@@ -1,0 +1,39 @@
+crawling_setting:
+  top_url:
+    - "http://book.dmkt-sp.jp/search/result/method/genre/genre_cd/b10000000000?utm_source=21dtbtop_leftmenu_101"
+  depth: 1
+  crawl_url:
+    allow:
+      - ".*?genre.genre_cd.b10000000000.*?page=10.*"
+      - ".*?genre.genre_cd.b10000000000.*?page=11.*"
+    deny:
+      - ".*?book.detail.book_type.*?title_id.*"
+  scrap_url:
+    allow:
+      - ".*?book.detail.book_type.*?title_id.*0/"
+      - ".*?book.detail.book_type.*?title_id.*1/"
+    deny:
+      - ".*?genre.genre_cd.b10000000000.*page"
+      - ".*?item_ids.*"
+scraping_setting:
+  name: "dbook"
+  limit: 5
+  target_url:
+    - ".*?title.*"
+  item_url:
+    exclude_query_name:
+      - "utm_source"
+  item_id:
+    # url_path_seq or url_query_name or xpath
+    method: "url_path_seq"
+    url_path_seq: 6
+  item_image:
+    # size or xpath
+    method: "xpath"
+    xpath: "//div[@class='jaket']//img"
+  item_desc:
+    xpath: "//div[@class='notes']"
+  item_desc2:
+    xpath: "//div[@id='pankuzu']"
+  item_desc3:
+    xpath: "//div[@class='info_box']"
