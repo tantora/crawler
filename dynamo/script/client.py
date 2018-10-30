@@ -35,19 +35,6 @@ print("get_batch_item")
 for i in response['Responses']['recinfo']:
     print(i['key'],i['val'])
 
-response = dynamodb.batch_get_item(
-    RequestItems={
-        'recinfo': {
-            'Keys': [
-                {'key': '1'},
-                {'key': '2'},
-                {'key': '3'},
-                {'key': '4'}
-            ]
-        }
-    }
-)
-
 keys=[]
 for i in range(10):
     keys.append({'key': str(i)})
